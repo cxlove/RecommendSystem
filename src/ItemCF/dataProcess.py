@@ -31,13 +31,15 @@ def splitData (data , seed , M , k) :
     """
     train = dict ()
     test = dict ()
+    random.seed (seed)
     for each in data :
-        if each[0] not in train :
-            train[each[0]] = []
-            test[each[0]] = []
         if random.randint (0 , M - 1) == k :
+            if each[0] not in test :
+                test[each[0]] = []
             test[each[0]].append (each[1])
         else :
+            if each[0] not in train :
+                train[each[0]] = []
             train[each[0]].append (each[1])
     return train , test
 

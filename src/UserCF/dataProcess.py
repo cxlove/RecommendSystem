@@ -29,15 +29,17 @@ def splitData (data , seed , M , k) :
         train , test : the data for training and testing 
                        transform it to a dictionary ,means what films they like for each users
     """
+    random.seed (seed)
     train = dict ()
     test = dict ()
     for each in data :
-        if each[0] not in train :
-            train[each[0]] = []
-            test[each[0]] = []
         if random.randint (0 , M - 1) == k :
+            if each[0] not in test :
+                test[each[0]] = []
             test[each[0]].append (each[1])
         else :
+            if each[0] not in train :  
+                train[each[0]] = []
             train[each[0]].append (each[1])
     return train , test
 
